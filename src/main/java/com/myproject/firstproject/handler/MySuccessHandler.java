@@ -1,4 +1,4 @@
-package com.myproject.firstproject.Handler;
+package com.myproject.firstproject.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * @ClassName MySuccessHandler
  * @Description TODO
- * @Author aisino
+ * @Author leis
  * @Date 2018/12/14 19:20
  * @Version 1.0
  **/

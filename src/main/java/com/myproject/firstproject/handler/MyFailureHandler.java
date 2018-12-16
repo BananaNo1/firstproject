@@ -1,4 +1,4 @@
-package com.myproject.firstproject.Handler;
+package com.myproject.firstproject.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * @ClassName MyFailureHandler
  * @Description TODO
- * @Author aisino
+ * @Author leis
  * @Date 2018/12/14 19:22
  * @Version 1.0
  **/

@@ -2,10 +2,6 @@ spring:
   profiles:
     active: dev
 
-  http:
-    multipart:
-      max-file-size: 50Mb
-      max-request-size: 50Mb
 
 mybatis:
   mapper-locations: classpath:public/mapper/*

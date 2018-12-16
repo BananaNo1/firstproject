@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @Date 2018/12/14 19:31
  * @Version 1.0
  **/
-@Component
+/*@Component
 public class MyCustomerDetailService implements UserDetailsService {
 
     @Override
@@ -20,4 +20,4 @@ public class MyCustomerDetailService implements UserDetailsService {
 
         return null;
     }
-}
+}*/
