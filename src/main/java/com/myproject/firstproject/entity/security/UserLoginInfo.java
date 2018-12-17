@@ -14,6 +14,7 @@ public class UserLoginInfo {
 
     private Integer lastLoginIp;
 
+
     public Long getId() {
         return id;
     }

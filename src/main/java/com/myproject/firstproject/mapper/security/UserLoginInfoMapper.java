@@ -1,5 +1,6 @@
 package com.myproject.firstproject.mapper.security;
 
+import com.myproject.firstproject.entity.security.SysUser;
 import com.myproject.firstproject.entity.security.UserLoginInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,5 @@ public interface UserLoginInfoMapper {
 
     int updateByPrimaryKey(UserLoginInfo record);
 
-    UserLoginInfo findByUserName(String username);
+    SysUser findByUserName(String username);
 }

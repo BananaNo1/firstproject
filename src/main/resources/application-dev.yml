@@ -3,8 +3,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://120.78.3.7:3306/firstproject
     username: root
-    password: 13456
-    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
     initialSize: 10
     minIdle: 10

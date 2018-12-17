@@ -5,6 +5,7 @@ import com.myproject.firstproject.entity.security.IpVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,5 +43,11 @@ public class TestIpApi {
     public void sinaApi(){
         String forObject = restTemplate.getForObject("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=113.87.192.231", String.class);
 
+    }
+    @Test
+    public void encode(){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String admin = bCryptPasswordEncoder.encode("admin");
+        System.out.println(admin);
     }
 }

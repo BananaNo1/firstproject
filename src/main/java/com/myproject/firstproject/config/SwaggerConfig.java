@@ -19,8 +19,8 @@ import springfox.documentation.service.Contact;
  * @Version 1.0
  **/
 
-@EnableSwagger2
-@Configuration
+/*@EnableSwagger2
+@Configuration*/
 public class SwaggerConfig {
 
     @Value("${swagger2.host}")

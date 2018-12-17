@@ -1,17 +1,21 @@
 package com.myproject.firstproject.config.security;
 
+import com.myproject.firstproject.entity.security.SysRole;
+import com.myproject.firstproject.entity.security.SysUser;
 import com.myproject.firstproject.entity.security.UserLoginInfo;
 import com.myproject.firstproject.entity.security.Permission;
 import com.myproject.firstproject.mapper.security.PermissionMapper;
 import com.myproject.firstproject.mapper.security.UserLoginInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +27,7 @@ import java.util.List;
  * @Date 2018/12/14 19:31
  * @Version 1.0
  **/
-@Component
+@Service
 public class MyCustomerDetailService implements UserDetailsService {
 
     @Autowired
@@ -34,17 +38,20 @@ public class MyCustomerDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserLoginInfo userLoginInfo = userLoginInfoMapper.findByUserName(username);
-        if (userLoginInfo != null) {
-            List<Permission> permissions = permissionMapper.findByUserId(userLoginInfo.getId());
+        SysUser sysUser = userLoginInfoMapper.findByUserName(username);
+        if (sysUser != null) {
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+            /*List<Permission> permissions = permissionMapper.findByUserId(userLoginInfo.getId());
             for (Permission permission : permissions) {
                 if (permission != null && permission.getName() != null) {
                     GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getName());
                     grantedAuthorities.add(grantedAuthority);
                 }
+            }*/
+            for(SysRole role :sysUser.getRoles()){
+                grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
             }
-            return new User(userLoginInfo.getUsername(), userLoginInfo.getPwd(), grantedAuthorities);
+            return new User(sysUser.getUsername(), sysUser.getPassword(), grantedAuthorities);
         } else {
             throw new UsernameNotFoundException("username:   " + username + "do not exist!!!!!!!!");
         }
