@@ -21,6 +21,6 @@ public class MySuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
+        httpServletRequest.getRequestDispatcher("/security").forward(httpServletRequest,httpServletResponse);
     }
 }

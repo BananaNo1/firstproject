@@ -1,4 +1,4 @@
-package com.myproject.firstproject.config;
+package com.myproject.firstproject.config.security;
 
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;

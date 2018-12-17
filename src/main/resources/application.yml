@@ -2,10 +2,20 @@ spring:
   profiles:
     active: dev
 
-
 mybatis:
-  mapper-locations: classpath:public/mapper/*
+  mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.myproject.firstproject.entity
+  configuration.map-underscore-to-camel-case: true
+
+logging:
+  config: classpath:config/logback-${spring.profiles.active}.xml
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  pageSizeZero: true
+  params: count=countSql
 
 server:
   servlet:
