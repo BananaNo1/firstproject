@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myproject.firstproject.mapper.security.UserLoginInfoMapper">
-    <resultMap id="BaseResultMap" type="com.myproject.firstproject.entity.UserLoginInfo">
+    <resultMap id="BaseResultMap" type="com.myproject.firstproject.entity.security.UserLoginInfo">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
@@ -18,7 +18,7 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
 
-    <select id="findByUserName" resultType="com.myproject.firstproject.entity.UserLoginInfo">
+    <select id="findByUserName" resultType="com.myproject.firstproject.entity.security.UserLoginInfo">
         select  username,pwd,last_login,last_login_ip
         from user_login_info
         where username = #{username}
@@ -28,13 +28,13 @@
     delete from user_login_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.myproject.firstproject.entity.UserLoginInfo">
+    <insert id="insert" parameterType="com.myproject.firstproject.entity.security.UserLoginInfo">
     insert into user_login_info (id, username, pwd, 
       last_login, last_login_ip)
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
       #{lastLogin,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=INTEGER})
   </insert>
-    <insert id="insertSelective" parameterType="com.myproject.firstproject.entity.UserLoginInfo">
+    <insert id="insertSelective" parameterType="com.myproject.firstproject.entity.security.UserLoginInfo">
         insert into user_login_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -71,7 +71,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.myproject.firstproject.entity.UserLoginInfo">
+    <update id="updateByPrimaryKeySelective" parameterType="com.myproject.firstproject.entity.security.UserLoginInfo">
         update user_login_info
         <set>
             <if test="username != null">
@@ -89,7 +89,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.myproject.firstproject.entity.UserLoginInfo">
+    <update id="updateByPrimaryKey" parameterType="com.myproject.firstproject.entity.security.UserLoginInfo">
     update user_login_info
     set username = #{username,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},

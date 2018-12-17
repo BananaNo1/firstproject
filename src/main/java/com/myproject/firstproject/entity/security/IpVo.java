@@ -1,4 +1,4 @@
-package com.myproject.firstproject.entity;
+package com.myproject.firstproject.entity.security;
 
 import lombok.Data;
 

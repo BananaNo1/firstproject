@@ -1,6 +1,7 @@
-package com.myproject.firstproject.entity;
+package com.myproject.firstproject.entity.security;
 
 import java.util.Date;
+
 
 public class UserLoginInfo {
     private Long id;

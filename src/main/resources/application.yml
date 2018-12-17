@@ -7,8 +7,6 @@ mybatis:
   type-aliases-package: com.myproject.firstproject.entity
   configuration.map-underscore-to-camel-case: true
 
-logging:
-  config: classpath:config/logback-${spring.profiles.active}.xml
 
 pagehelper:
   helperDialect: mysql

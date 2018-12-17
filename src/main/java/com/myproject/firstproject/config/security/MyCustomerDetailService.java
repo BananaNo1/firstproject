@@ -1,6 +1,6 @@
 package com.myproject.firstproject.config.security;
 
-import com.myproject.firstproject.entity.UserLoginInfo;
+import com.myproject.firstproject.entity.security.UserLoginInfo;
 import com.myproject.firstproject.entity.security.Permission;
 import com.myproject.firstproject.mapper.security.PermissionMapper;
 import com.myproject.firstproject.mapper.security.UserLoginInfoMapper;

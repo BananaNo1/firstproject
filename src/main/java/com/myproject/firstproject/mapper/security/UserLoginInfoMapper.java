@@ -1,6 +1,6 @@
 package com.myproject.firstproject.mapper.security;
 
-import com.myproject.firstproject.entity.UserLoginInfo;
+import com.myproject.firstproject.entity.security.UserLoginInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
