@@ -5,6 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ *@Description TODO
+ *@Author leis
+ *@Date  2018/12/18 14:47
+ **/
 @Repository
 @Mapper
 public interface UserMapper {
@@ -65,9 +70,17 @@ public interface UserMapper {
     User selectLogin(@Param("username") String username,@Param("password") String password);
 
     /**
-     * 查询用户名时候存在
+     * 查询用户名是否存在
      * @param username
      * @return
      */
     Integer checkUsername(String username);
+
+    /**
+     * 查询邮箱是否存在
+     * @param email
+     * @return
+     */
+    Integer checkEmail(String email);
+
 }

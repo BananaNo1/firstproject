@@ -2,6 +2,7 @@ package com.myproject.firstproject.exception;
 
 import com.myproject.firstproject.common.ResultDataDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -28,5 +29,10 @@ public class GlobalExceptionHandler {
     public ResultDataDto nullPointExceptionHandler() {
         return ResultDataDto.createByErrorMessage("缺省参数!");
     }
+
+    /*@ExceptionHandler(AccessDeniedException.class)
+    public ResultDataDto accessDeniedException(){
+        return ResultDataDto.createByErrorMessage("权限不足");
+    }*/
 
 }

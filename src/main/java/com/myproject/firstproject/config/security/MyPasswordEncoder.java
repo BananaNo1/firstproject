@@ -17,15 +17,12 @@ public class MyPasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        log.warn("CharSequence:::  " + charSequence);
-        log.warn("bCryptPasswordEncoder.encode(charSequence.toString()):: " + bCryptPasswordEncoder.encode(charSequence.toString()));
         return bCryptPasswordEncoder.encode(charSequence.toString());
     }
 
     @Override
     public boolean matches(CharSequence charSequence, String s) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        log.warn("CharSequence::: " + charSequence + "******String::: " + s);
         return bCryptPasswordEncoder.matches(charSequence.toString(), s);
     }
 }

@@ -47,7 +47,7 @@ public class TestIpApi {
     @Test
     public void encode(){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String admin = bCryptPasswordEncoder.encode("admin");
+        String admin = bCryptPasswordEncoder.encode("abel");
         System.out.println(admin);
     }
 }

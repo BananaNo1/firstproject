@@ -1,5 +1,6 @@
 package com.myproject.firstproject.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,12 @@ import java.io.IOException;
  * @Version 1.0
  **/
 @Component
+@Slf4j
 public class MySuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        httpServletRequest.getRequestDispatcher("/security").forward(httpServletRequest,httpServletResponse);
+        log.info("Login success !!!!!!!!!!!!!!!!!!");
+        httpServletResponse.sendRedirect("/firstproject/index");
     }
 }

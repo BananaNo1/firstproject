@@ -165,4 +165,11 @@
     where
     username = #{username}
   </select>
+
+  <select id="checkEmail" resultType="Integer">
+      select
+      count(*)
+      from  mmall_user
+      where email = #{email}
+  </select>
 </mapper>
