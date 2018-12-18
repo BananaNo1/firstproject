@@ -23,6 +23,7 @@ import java.util.List;
  * @Date 2018/12/14 19:31
  * @Version 1.0
  **/
+/*
 @Service
 public class MyCustomerDetailService implements UserDetailsService {
 
@@ -37,13 +38,15 @@ public class MyCustomerDetailService implements UserDetailsService {
         SysUser sysUser = userLoginInfoMapper.findByUserName(username);
         if (sysUser != null) {
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            /*List<Permission> permissions = permissionMapper.findByUserId(userLoginInfo.getId());
+            */
+/*List<Permission> permissions = permissionMapper.findByUserId(userLoginInfo.getId());
             for (Permission permission : permissions) {
                 if (permission != null && permission.getName() != null) {
                     GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getName());
                     grantedAuthorities.add(grantedAuthority);
                 }
-            }*/
+            }*//*
+
             for(SysRole role :sysUser.getRoles()){
                 grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
             }
@@ -53,3 +56,4 @@ public class MyCustomerDetailService implements UserDetailsService {
         }
     }
 }
+*/

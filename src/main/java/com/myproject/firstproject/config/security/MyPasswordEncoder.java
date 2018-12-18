@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @Date 2018/12/17 14:57
  * @Version 1.0
  **/
-@Slf4j
+/*@Slf4j
 public class MyPasswordEncoder implements PasswordEncoder {
 
     @Override
@@ -25,4 +25,4 @@ public class MyPasswordEncoder implements PasswordEncoder {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.matches(charSequence.toString(), s);
     }
-}
+}*/

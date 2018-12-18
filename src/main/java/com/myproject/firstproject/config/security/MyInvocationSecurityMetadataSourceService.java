@@ -20,6 +20,7 @@ import java.util.*;
  * @Date 2018/12/18 11:19
  * @Version 1.0
  **/
+/*
 @Service
 public class MyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
 
@@ -69,3 +70,4 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         return true;
     }
 }
+*/

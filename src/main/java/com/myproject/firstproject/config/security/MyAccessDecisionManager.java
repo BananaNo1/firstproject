@@ -18,6 +18,7 @@ import java.util.Iterator;
  * @Date 2018/12/18 9:16
  * @Version 1.0
  **/
+/*
 @Service
 public class MyAccessDecisionManager implements AccessDecisionManager {
 
@@ -50,4 +51,6 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
     public boolean supports(Class<?> clazz) {
         return true;
     }
+
 }
+*/

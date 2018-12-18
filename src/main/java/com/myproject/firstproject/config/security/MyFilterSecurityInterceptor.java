@@ -20,6 +20,7 @@ import java.io.IOException;
  * @Date 2018/12/18 10:57
  * @Version 1.0
  **/
+/*
 @Service
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
 
@@ -69,3 +70,4 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
         return this.myInvocationSecurityMetadataSourceService;
     }
 }
+*/
