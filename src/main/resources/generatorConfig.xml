@@ -7,6 +7,7 @@
     <!-- <properties resource="jdbc.properties"/>-->
 
     <classPathEntry location="D:\mysql-connector-java-5.1.24.jar"></classPathEntry>
+
     <!-- 用户相关 -->
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!-- 是否去除自动生成的注释 true：是 ： false:否 -->

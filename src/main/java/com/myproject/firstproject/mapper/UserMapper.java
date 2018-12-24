@@ -83,4 +83,25 @@ public interface UserMapper {
      */
     Integer checkEmail(String email);
 
+    /**
+     * 查找问题
+     * @param username
+     * @return
+     */
+   String selectQuestionByUsername(String username);
+
+    /**
+     * 检查答案
+     * @param username
+     * @param question
+     * @param answer
+     * @return
+     */
+    int checkAnswer(@Param("username")String username,@Param("question")String question,@Param("answer")String answer);
+
+    int updatePasswordByUsername(@Param("username")String username,@Param("passwordNew")String passwordNew);
+
+    int checkPassword(@Param(value="password")String password,@Param("userId")Integer userId);
+
+    int checkEmailByUserId(@Param(value="email")String email,@Param(value="userId")Integer userId);
 }

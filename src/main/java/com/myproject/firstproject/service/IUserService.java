@@ -33,5 +33,29 @@ public interface IUserService {
      */
     ResultDataDto<String> checkValid(String str,String type);
 
+    /**
+     * 查找问题
+     * @param username
+     * @return
+     */
+    ResultDataDto selectQuestion(String username);
 
+    /**
+     * 检查答案
+     * @param username
+     * @param question
+     * @param answer
+     * @return
+     */
+    ResultDataDto<String> checkAnswer(String username,String question,String answer);
+
+    ResultDataDto<String> forgetResetPassword(String username,String passwordNew,String forgetToken);
+
+    ResultDataDto<String> resetPassword(String passwordOld,String passwordNew,User user);
+
+    ResultDataDto<User> updateInformation(User user);
+
+    ResultDataDto<User> getInformation(Integer userId);
+
+    ResultDataDto checkAdminRole(User user);
 }

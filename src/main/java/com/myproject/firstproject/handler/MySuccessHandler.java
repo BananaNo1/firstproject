@@ -1,8 +1,7 @@
 package com.myproject.firstproject.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ import java.io.IOException;
  * @Date 2018/12/14 19:20
  * @Version 1.0
  **/
-@Component
+/*@Component
 @Slf4j
 public class MySuccessHandler implements AuthenticationSuccessHandler {
 
@@ -26,4 +25,4 @@ public class MySuccessHandler implements AuthenticationSuccessHandler {
         log.info("Login success !!!!!!!!!!!!!!!!!!");
         httpServletResponse.sendRedirect("/firstproject/index");
     }
-}
+}*/

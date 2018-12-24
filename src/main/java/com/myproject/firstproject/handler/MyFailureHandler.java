@@ -1,7 +1,6 @@
 package com.myproject.firstproject.handler;
 
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -16,11 +15,11 @@ import java.io.IOException;
  * @Date 2018/12/14 19:22
  * @Version 1.0
  **/
-@Component
+/*@Component
 public class MyFailureHandler implements AuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
 
     }
-}
+}*/

@@ -1,8 +1,6 @@
 package com.myproject.firstproject.common;
 
-
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 /**
@@ -11,7 +9,6 @@ import java.io.Serializable;
  * @date 2018/12/16 21:46
  */
 
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class ResultDataDto<T> implements Serializable {
 
     private int status;

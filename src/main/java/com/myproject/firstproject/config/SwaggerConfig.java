@@ -19,8 +19,8 @@ import springfox.documentation.service.Contact;
  * @Version 1.0
  **/
 
-/*@EnableSwagger2
-@Configuration*/
+@EnableSwagger2
+@Configuration
 public class SwaggerConfig {
 
     @Value("${swagger2.host}")
@@ -28,11 +28,11 @@ public class SwaggerConfig {
 
     @Bean
     public Docket shopBackstageUser() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName("")
+        return new Docket(DocumentationType.SWAGGER_2).groupName("用户模块")
                 .host(host)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(""))
+                .apis(RequestHandlerSelectors.basePackage("com.myproject.firstproject.controller.portal"))
                 .build();
     }
 

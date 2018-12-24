@@ -1,8 +1,6 @@
 package com.myproject.firstproject.config.security;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 /**
  * @ClassName MyPasswordEncoder
