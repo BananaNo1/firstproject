@@ -10,6 +10,7 @@ import com.myproject.firstproject.service.IUserService;
 import com.myproject.firstproject.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Resource
-    private ValueOperations<String, String> valueOperations;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     public ResultDataDto<User> login(String username, String password) {
@@ -189,24 +190,24 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-        public User getByToken(HttpServletResponse response, String token) {
-            if (StringUtils.isEmpty(token)) {
-                return null;
-            }
-            String us = valueOperations.get("token");
-            User user = JSONObject.parseObject(us, User.class);
-            if (user != null) {
-                addCookie(response, token, user);
-            }
+    public User getByToken(HttpServletResponse response, String token) {
+        if (StringUtils.isEmpty(token)) {
             return null;
         }
+        String us = redisTemplate.opsForValue().get("token");
+        User user = JSONObject.parseObject(us, User.class);
+        if (user != null) {
+            addCookie(response, token, user);
+        }
+        return null;
+    }
 
-        private void addCookie(HttpServletResponse response, String token, User user) {
-            valueOperations.set("token", token);
-            Cookie cookie = new Cookie("token", token);
-            cookie.setMaxAge(60);
-            cookie.setPath("/");
-            response.addCookie(cookie);
+    private void addCookie(HttpServletResponse response, String token, User user) {
+        redisTemplate.opsForValue().set("token", token);
+        Cookie cookie = new Cookie("token", token);
+        cookie.setMaxAge(60);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 
 
