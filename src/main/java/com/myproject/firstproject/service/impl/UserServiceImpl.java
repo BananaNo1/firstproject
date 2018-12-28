@@ -1,5 +1,6 @@
 package com.myproject.firstproject.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.myproject.firstproject.common.Const;
 import com.myproject.firstproject.common.ResultDataDto;
 import com.myproject.firstproject.common.TokenCache;
@@ -9,8 +10,12 @@ import com.myproject.firstproject.service.IUserService;
 import com.myproject.firstproject.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
@@ -24,7 +29,10 @@ import java.util.UUID;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
+
+    @Resource
+    private ValueOperations<String, String> valueOperations;
 
     @Override
     public ResultDataDto<User> login(String username, String password) {
@@ -106,24 +114,24 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResultDataDto<String> forgetResetPassword(String username, String passwordNew, String forgetToken) {
-        if(StringUtils.isBlank(forgetToken)){
+        if (StringUtils.isBlank(forgetToken)) {
             return ResultDataDto.createByErrorMessage("没有传递token");
         }
         ResultDataDto<String> resultDataDto = this.checkValid(username, Const.CURRENT_USER);
-        if(resultDataDto.isSuccess()){
+        if (resultDataDto.isSuccess()) {
             return ResultDataDto.createByErrorMessage("用户不存在");
         }
-        String token =  TokenCache.getKey(TokenCache.TOKEN_PREFIX+username);
-        if(StringUtils.isBlank(token)){
+        String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX + username);
+        if (StringUtils.isBlank(token)) {
             return ResultDataDto.createByErrorMessage("token无效或者过期");
         }
-        if(StringUtils.equals(forgetToken,token)){
-            String md5Password= MD5Util.MD5EncodeUtf8(passwordNew);
+        if (StringUtils.equals(forgetToken, token)) {
+            String md5Password = MD5Util.MD5EncodeUtf8(passwordNew);
             int i = userMapper.updatePasswordByUsername(username, md5Password);
-            if(i>0){
+            if (i > 0) {
                 return ResultDataDto.createBySuccess("修改密码成功");
             }
-        }else{
+        } else {
             return ResultDataDto.createByErrorMessage("token错误,请重新获取重置密码的token");
         }
         return ResultDataDto.createByErrorMessage("修改密码失败");
@@ -132,12 +140,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ResultDataDto<String> resetPassword(String passwordOld, String passwordNew, User user) {
         int i = userMapper.checkPassword(MD5Util.MD5EncodeUtf8(passwordOld), user.getId());
-        if(i==0){
-            return  ResultDataDto.createByErrorMessage("旧密码错误");
+        if (i == 0) {
+            return ResultDataDto.createByErrorMessage("旧密码错误");
         }
         user.setPassword(MD5Util.MD5EncodeUtf8(passwordNew));
         int i1 = userMapper.updateByPrimaryKeySelective(user);
-        if(i1>0){
+        if (i1 > 0) {
             return ResultDataDto.createBySuccess("更新密码成功");
         }
         return ResultDataDto.createByErrorMessage("更新密码失败");
@@ -146,7 +154,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ResultDataDto<User> updateInformation(User user) {
         int resultCount = userMapper.checkEmailByUserId(user.getEmail(), user.getId());
-        if(resultCount>0){
+        if (resultCount > 0) {
             return ResultDataDto.createByErrorMessage("email已存在");
         }
         User updateUser = new User();
@@ -156,8 +164,8 @@ public class UserServiceImpl implements IUserService {
         updateUser.setAnswer(user.getAnswer());
         updateUser.setQuestion(user.getQuestion());
         int updateCount = userMapper.updateByPrimaryKeySelective(updateUser);
-        if(updateCount>1){
-            return  ResultDataDto.createBySuccessMessage("更新个人信息成功");
+        if (updateCount > 1) {
+            return ResultDataDto.createBySuccessMessage("更新个人信息成功");
         }
         return ResultDataDto.createByErrorMessage("更新个人信息失败");
     }
@@ -165,7 +173,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ResultDataDto<User> getInformation(Integer userId) {
         User user = userMapper.selectByPrimaryKey(userId);
-        if(user == null){
+        if (user == null) {
             return ResultDataDto.createByErrorMessage("找不到该用户");
         }
         user.setPassword(StringUtils.EMPTY);
@@ -174,10 +182,31 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResultDataDto checkAdminRole(User user) {
-        if(user !=null && user.getRole().intValue() == Const.Role.ROLE_ADMIN){
+        if (user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN) {
             return ResultDataDto.createBySuccess();
         }
         return ResultDataDto.createByError();
+    }
+
+    @Override
+        public User getByToken(HttpServletResponse response, String token) {
+            if (StringUtils.isEmpty(token)) {
+                return null;
+            }
+            String us = valueOperations.get("token");
+            User user = JSONObject.parseObject(us, User.class);
+            if (user != null) {
+                addCookie(response, token, user);
+            }
+            return null;
+        }
+
+        private void addCookie(HttpServletResponse response, String token, User user) {
+            valueOperations.set("token", token);
+            Cookie cookie = new Cookie("token", token);
+            cookie.setMaxAge(60);
+            cookie.setPath("/");
+            response.addCookie(cookie);
     }
 
 

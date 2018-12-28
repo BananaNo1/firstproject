@@ -3,6 +3,8 @@ package com.myproject.firstproject.service;
 import com.myproject.firstproject.common.ResultDataDto;
 import com.myproject.firstproject.entity.User;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @ClassName IUserService
  * @Description 用户服务层
@@ -58,4 +60,6 @@ public interface IUserService {
     ResultDataDto<User> getInformation(Integer userId);
 
     ResultDataDto checkAdminRole(User user);
+
+    User getByToken(HttpServletResponse response,String token);
 }
